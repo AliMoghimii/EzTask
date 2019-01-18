@@ -27,7 +27,7 @@ public class MainPage extends AppCompatActivity {
                 while(progressCounter < 100)
                 {
                     progressCounter++;
-                    android.os.SystemClock.sleep(50);
+                    android.os.SystemClock.sleep(25);
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
