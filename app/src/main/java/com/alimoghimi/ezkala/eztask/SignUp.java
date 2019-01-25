@@ -1,6 +1,7 @@
 package com.alimoghimi.ezkala.eztask;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -24,6 +25,7 @@ import java.util.ArrayList;
 import java.util.IllegalFormatCodePointException;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Vector;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -35,9 +37,7 @@ public class SignUp extends AppCompatActivity  {
 //-----------------------------------------------------------------------------------------------------------------------------------------------Declarations
 //-----------------------------------------------------------------------------------------------------------------------------------------------
 
-    static List<Users> users = new ArrayList<>();
-    File f = new File("D:\\dataAndroid\\data.txt");
-
+    static Vector<Users> users = new Vector<>();
 
     EditText SignUpTextUser;
     EditText SignUpTextPass;
@@ -133,18 +133,22 @@ public class SignUp extends AppCompatActivity  {
 
     public void SetData(EditText username, EditText password, EditText email, EditText name, EditText fname , RadioButton radio) {
 
+        Users user = null;
+
         if(radio.getText().equals("Free Member")) {
-            users.add(new Users(username.getText().toString(), password.getText().toString(), email.getText().toString(), name.getText().toString(), fname.getText().toString()));
+            users.add(user = new Users(username.getText().toString(), password.getText().toString(), email.getText().toString(), name.getText().toString(), fname.getText().toString()));
             Toast.makeText(getApplicationContext(), "Account created successfully " + users.get(0).getName() + " " + users.get(0).getFamilyName() + ", You are a Free Member" , Toast.LENGTH_LONG).show();
         }
         if(radio.getText().equals("Silver Member")) {
-            users.add(new Silver(username.getText().toString(), password.getText().toString(), email.getText().toString(), name.getText().toString(), fname.getText().toString()));
+            users.add( user = new Silver(username.getText().toString(), password.getText().toString(), email.getText().toString(), name.getText().toString(), fname.getText().toString()));
             Toast.makeText(getApplicationContext(), "Account created successfully " + users.get(0).getName() + " " + users.get(0).getFamilyName() + ", You are a Silver Member" , Toast.LENGTH_LONG).show();
         }
         if(radio.getText().equals("Gold Member")) {
-            users.add(new Gold(username.getText().toString(), password.getText().toString(), email.getText().toString(), name.getText().toString(), fname.getText().toString()));
+            users.add( user = new Gold(username.getText().toString(), password.getText().toString(), email.getText().toString(), name.getText().toString(), fname.getText().toString()));
             Toast.makeText(getApplicationContext(), "Account created successfully " + users.get(0).getName() + " " + users.get(0).getFamilyName() + ", You are a Gold Member" , Toast.LENGTH_LONG).show();
         }
+
+        new WriteData(user).execute();
     }
 
 //------------------------------------------------------------------------------------------------------------------------------- Duplicated Username
@@ -380,6 +384,8 @@ return true;
 
 //-------------------------------------------------------------------------------------------------------Change Intent
 
+
+
                 SignUpbtn2.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
 
@@ -400,6 +406,38 @@ return true;
             }
 
 
+    }
+
+    class WriteData extends AsyncTask<Users, Void, Void>{
+
+        Users u;
+        boolean canRaed = false;
+
+        WriteData(Users u){
+            this.u  = u;
+        }
+
+        @Override
+        protected Void doInBackground(Users... vectors) {
+
+            try {
+
+                MainPage.outputStream.writeObject(u);
+                canRaed = true;
+                //MainPage.outputStream.writeBoolean(canRaed);
+                MainPage.outputStream.flush();
+
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
     }
 
 }

@@ -3,6 +3,7 @@ package com.alimoghimi.ezkala.eztask;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 public class Users implements Serializable {
 
@@ -13,7 +14,7 @@ public class Users implements Serializable {
     private String email;
     private String name;
     private String familyName;
-    public List<Tasks> userTask;
+    public Vector<Tasks> userTask;
 
     public Users(String username, String password, String email, String name, String familyName) {
 
@@ -22,7 +23,7 @@ public class Users implements Serializable {
         this.email = email;
         this.name = name;
         this.familyName = familyName;
-        userTask = new ArrayList<>();
+        userTask = new Vector<>();
         NumberUsers++;
     }
 
@@ -81,22 +82,23 @@ public class Users implements Serializable {
         return userTask;
     }
 
-    public void setUserTask(List<Tasks> userTask) {
+    public void setUserTask(Vector<Tasks> userTask) {
         this.userTask = userTask;
     }
 
-    /*public boolean equals(Object obj)
-    {
+    @Override
+    public String toString() {
+        return "username: " + username + "\npassword: " + password + "\nemail: " + "\nname: " + name + "\nfamily name: " + familyName;
+    }
 
-    }*/
 }
 
 
-class Silver extends Users
+class Silver extends Users implements Serializable
 {
      public Silver(String username, String password, String email, String name, String familyName) {
         super(username , password , email , name , familyName);
-        userTask = new ArrayList<>();
+        userTask = new Vector<>();
     }
 
     public void createSubTask(Tasks subTask)
@@ -107,7 +109,7 @@ class Silver extends Users
 }
 
 
-class Gold extends Silver{
+class Gold extends Silver implements Serializable{
 
     public Gold(String username, String password, String email, String name, String familyName) {
         super(username, password, email, name, familyName);

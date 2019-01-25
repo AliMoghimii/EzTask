@@ -14,10 +14,11 @@ import android.widget.Toast;
 import org.w3c.dom.Text;
 
 import java.util.List;
+import java.util.Vector;
 
 public class SignIn extends AppCompatActivity {
 
-    List<Users> users = SignUp.users;
+    Vector<Users> users = SignUp.users;
 
     EditText SignInTextUser;
     EditText SignInTextPass;
@@ -31,12 +32,12 @@ public class SignIn extends AppCompatActivity {
 
     public boolean IsValidInfo(EditText usernameText , EditText passwordText){
 
-        String username = usernameText.getText().toString();
+        String usernameEmail = usernameText.getText().toString();
         String password = passwordText.getText().toString();
 
         for (int i = 0; i < Users.NumberUsers ; i++)
         {
-            if(users.get(i).getUsername().equals(username))
+            if(users.get(i).getUsername().equals(usernameEmail) || users.get(i).getEmail().equals(usernameEmail)  )
             {
                 if(users.get(i).getPassword().equals(password))
                 {

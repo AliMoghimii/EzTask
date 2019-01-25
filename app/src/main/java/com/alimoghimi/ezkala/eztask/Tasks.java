@@ -2,7 +2,7 @@ package com.alimoghimi.ezkala.eztask;
 
 import java.io.Serializable;
 
-public class Tasks implements Comparable<Tasks> {
+public class Tasks implements Comparable<Tasks> , Serializable {
 
 
         static int numberOfTasks = 0;
