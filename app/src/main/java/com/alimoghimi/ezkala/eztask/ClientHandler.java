@@ -19,12 +19,15 @@ public class ClientHandler extends Thread implements Serializable {
     ObjectInputStream inputStream;
     Socket clientSoc;
     Users users;
+    Users fromFileUsers;
 
     FileOutputStream fileOutputStream;
     ObjectOutputStream writeTofile;
 
     ObjectInputStream readFromFile;
     FileInputStream fileInputStream;
+    ObjectInputStream fileToInput;
+
     File myfile = new File("D:\\data.txt");
 
 
@@ -82,6 +85,22 @@ public class ClientHandler extends Thread implements Serializable {
 
                 writeTofile.writeObject(users);
                 writeTofile.flush();
+
+
+/*                fileInputStream = new FileInputStream(myfile);
+                fileToInput = new ObjectInputStream(fileInputStream);
+
+                try {
+
+                    while ((fromFileUsers = (Users) fileToInput.readObject()) != null) {
+
+                        outputStream.writeObject(fromFileUsers);
+                    }
+                }
+                catch (ClassNotFoundException e){
+                    System.out.println(e);
+                }*/
+
 
 //                try {
 //                    fileInputStream = new FileInputStream(myfile);

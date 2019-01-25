@@ -68,7 +68,7 @@ public class AddTask extends AppCompatActivity {
 
                         if (!TaskPage.prepareData(new Tasks((String) taskInfo.getText().toString(), 2)));
 
-                        Toast.makeText(getApplicationContext(), "this task is alerdy i",
+                        Toast.makeText(getApplicationContext(), "This Task is Already in the list",
                                 Toast.LENGTH_LONG).show();
 
                     } else {
@@ -76,7 +76,7 @@ public class AddTask extends AppCompatActivity {
                                 taskMonth.getText().toString(), taskDay.getText().toString(), taskHour.getText().toString(),
                                 taskMinute.getText().toString(), taskSecond.getText().toString(), 2));
 
-                        Toast.makeText(getApplicationContext(), "with date",
+                        Toast.makeText(getApplicationContext(), "Task Added",
                                 Toast.LENGTH_LONG).show();
                     }
 

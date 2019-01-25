@@ -1,6 +1,8 @@
 package com.alimoghimi.ezkala.eztask;
 
 import android.content.Intent;
+import android.os.AsyncTask;
+import android.support.annotation.RequiresPermission;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -13,6 +15,7 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Vector;
 
@@ -30,17 +33,14 @@ public class SignIn extends AppCompatActivity {
 
 //------------------------------------------------------------------------------------------------------------------------------
 
-    public boolean IsValidInfo(EditText usernameText , EditText passwordText){
+    public boolean IsValidInfo(EditText usernameText, EditText passwordText) {
 
         String usernameEmail = usernameText.getText().toString();
         String password = passwordText.getText().toString();
 
-        for (int i = 0; i < Users.NumberUsers ; i++)
-        {
-            if(users.get(i).getUsername().equals(usernameEmail) || users.get(i).getEmail().equals(usernameEmail)  )
-            {
-                if(users.get(i).getPassword().equals(password))
-                {
+        for (int i = 0; i < Users.NumberUsers; i++) {
+            if (users.get(i).getUsername().equals(usernameEmail) || users.get(i).getEmail().equals(usernameEmail)) {
+                if (users.get(i).getPassword().equals(password)) {
                     current = users.get(i);
                     return true;
                 }
@@ -49,11 +49,13 @@ public class SignIn extends AppCompatActivity {
         return false;
     }
 
-//------------------------------------------------------------------------------------------------------------------------------
+    //------------------------------------------------------------------------------------------------------------------------------
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
+
+        ///new Readdata().execute();
 
         SignInTextUser = (EditText) findViewById(R.id.emailandusersignin);
         SignInTextPass = (EditText) findViewById(R.id.passsignin);
@@ -65,7 +67,7 @@ public class SignIn extends AppCompatActivity {
 
         //--------------------------------------------------------------
 
-        try{
+        try {
 
             //--------------------------------------------------------------
 
@@ -78,7 +80,7 @@ public class SignIn extends AppCompatActivity {
                 public void onTextChanged(CharSequence signUpTextPass, int start, int before, int count) {
 
 
-                    if(!IsValidInfo(SignInTextUser , SignInTextPass) && !SignInTextUser.toString().isEmpty() && !SignInTextPass.toString().isEmpty()) {
+                    if (!IsValidInfo(SignInTextUser, SignInTextPass) && !SignInTextUser.toString().isEmpty() && !SignInTextPass.toString().isEmpty()) {
                         ErrorText.setText("Incorrect ID or password");
                         PassLoginValid = false;
                     }
@@ -92,8 +94,7 @@ public class SignIn extends AppCompatActivity {
                         SignInTextPass.setError("Fill this box");
                         PassLoginValid = false;
 
-                    }
-                    else if (!signUpTextPass.toString().isEmpty() && IsValidInfo(SignInTextUser , SignInTextPass)) {
+                    } else if (!signUpTextPass.toString().isEmpty() && IsValidInfo(SignInTextUser, SignInTextPass)) {
                         ErrorText.setText(" ");
                         PassLoginValid = true;
                     }
@@ -113,14 +114,12 @@ public class SignIn extends AppCompatActivity {
             //-------------------------------------------------------------- logs in
 
 
-
             Button Signinbtn = (Button) findViewById(R.id.loginbtn);
-            Signinbtn.setOnClickListener(new View.OnClickListener()
-            {
+            Signinbtn.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     ErrorText.setText(" ");
                     Toast.makeText(getApplicationContext(), "You logged in sucessfully " + current.getName() + " " + current.getFamilyName(), Toast.LENGTH_LONG).show();
-                    Intent TaskPage = new Intent(getApplicationContext(),TaskPage.class);
+                    Intent TaskPage = new Intent(getApplicationContext(), TaskPage.class);
                     startActivity(TaskPage);
                 }
 
@@ -129,22 +128,58 @@ public class SignIn extends AppCompatActivity {
 
         }
         //--------------------------------------------------------------
-                catch(Exception e)
-            {
+        catch (Exception e) {
 
-            }
+        }
 
 
         //--------------------------------------------------------------sign up btn - to signuppage
         Button Signupbtn = (Button) findViewById(R.id.signupbtn);
-        Signupbtn.setOnClickListener(new View.OnClickListener()
-        {
+        Signupbtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent SignUp = new Intent(getApplicationContext(),SignUp.class);
+                Intent SignUp = new Intent(getApplicationContext(), SignUp.class);
                 startActivity(SignUp);
             }
 
         });
 
     }
+
+/*    class Readdata extends AsyncTask<Void, Void, Vector<Users>> {
+
+        Vector<Users> usersVector;
+
+        @Override
+        protected Vector<Users> doInBackground(Void... voids) {
+
+            try {
+
+                while (MainPage.inputStream.readObject() != null) {
+                    try {
+
+                        usersVector.add((Users) (MainPage.inputStream.readObject()));
+                    } catch (ClassNotFoundException e) {
+
+                    } catch (IOException e) {
+                        System.out.println(e);
+                    }
+
+                }
+            } catch (ClassNotFoundException e) {
+
+            } catch (IOException e) {
+
+            }
+
+            return usersVector;
+        }
+
+        @Override
+        protected void onPostExecute(Vector<Users> users) {
+            SignUp.users.addAll(users);
+            super.onPostExecute(users);
+
+        }
+    }*/
+
 }

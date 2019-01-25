@@ -55,41 +55,47 @@ public class TaskPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_page);
 
-        addTaskBtn = (FloatingActionButton) findViewById(R.id.addbtn);
-        logoutBtn = (Button) findViewById(R.id.logoutbtn);
+        try {
+            addTaskBtn = (FloatingActionButton) findViewById(R.id.addbtn);
+            logoutBtn = (Button) findViewById(R.id.logoutbtn);
 
-        myRecView = (RecyclerView) findViewById(R.id.rview);
-        showData();
+            myRecView = (RecyclerView) findViewById(R.id.rview);
+            showData();
 
 
-        addTaskBtn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
+            addTaskBtn.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
 
-                Intent AddTaskFree = new Intent(getApplicationContext(), AddTask.class);
-                Intent AddTaskSilver = new Intent(getApplicationContext(), AddTaskSilver.class);
-                Intent AddTaskGold = new Intent(getApplicationContext(), AddTaskGold.class);
+                    Intent AddTaskFree = new Intent(getApplicationContext(), AddTask.class);
+                    Intent AddTaskSilver = new Intent(getApplicationContext(), AddTaskSilver.class);
+                    Intent AddTaskGold = new Intent(getApplicationContext(), AddTaskGold.class);
 
-                //-----------------------------------------------------------------------------------Free
-                if(SignIn.current.getClass().equals(Gold.class))
-                startActivity(AddTaskGold);
-                //-----------------------------------------------------------------------------------Silver
-                if(SignIn.current.getClass().equals(Silver.class))
-                startActivity(AddTaskSilver);
-                //-----------------------------------------------------------------------------------Gold
-                if(SignIn.current.getClass().equals(Users.class))
-                startActivity(AddTaskFree);
-            }
+                    //-----------------------------------------------------------------------------------Free
+                    if (SignIn.current.getClass().equals(Gold.class))
+                        startActivity(AddTaskGold);
+                    //-----------------------------------------------------------------------------------Silver
+                    if (SignIn.current.getClass().equals(Silver.class))
+                        startActivity(AddTaskSilver);
+                    //-----------------------------------------------------------------------------------Gold
+                    if (SignIn.current.getClass().equals(Users.class))
+                        startActivity(AddTaskFree);
+                }
 
-        });
+            });
 
-        //-----------------------------------------------------------------------------------Logout
-        logoutBtn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
+            //-----------------------------------------------------------------------------------Logout
+            logoutBtn.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
 
-                Intent Logout = new Intent(getApplicationContext(), SignIn.class);
-                startActivity(Logout);
-            }
+                    Intent Logout = new Intent(getApplicationContext(), SignIn.class);
+                    startActivity(Logout);
+                }
 
-        });
+            });
+        }
+        catch(NullPointerException e)
+        {
+            System.out.println(e.toString());
+        }
     }
 }
