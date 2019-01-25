@@ -43,7 +43,7 @@ public class AddWCalender extends AppCompatActivity {
                         @Override
                         public void onClick(View v) {
 
-                            Intent tolListByCal = new Intent(getApplicationContext(), AddTask.class);
+                            Intent GotoTaskPage = new Intent(getApplicationContext(), TaskPage.class);
 
                             if (!infoTxt.getText().toString().equals("")) {
 
@@ -51,13 +51,12 @@ public class AddWCalender extends AppCompatActivity {
 
 
                                     TaskPage.prepareData(new Tasks(infoTxt.getText().toString(), date, year1, month1, day1));
-                                    startActivity(tolListByCal);
+                                    startActivity(GotoTaskPage);
                                 }
                                 else
                                     Toast.makeText(getApplicationContext(), "this task is already in the list", Toast.LENGTH_LONG);
                             }
 
-                            //***** else fill the blanks
                         }
                     });
 

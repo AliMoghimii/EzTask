@@ -58,9 +58,16 @@ public class SignUp extends AppCompatActivity  {
 //----------------------------------------------------------------------------------------------------------------------------------------------- Functions
 //-----------------------------------------------------------------------------------------------------------------------------------------------
 
+//------------------------------------------------------------------------------------------------------------------------------- Radio Validation
+
+    public void checkButton(View v) {
+        int radioId = radioGroup.getCheckedRadioButtonId();
+        radioButton = findViewById(radioId);
+        Toast.makeText(getApplicationContext(), "this is " + radioButton.getText() + " int is " + radioId, Toast.LENGTH_LONG).show();
+    }
+
+
 //------------------------------------------------------------------------------------------------------------------------------- Username Validation
-
-
 
     public static boolean validUsername(EditText usernameEditText) {
 
@@ -124,10 +131,20 @@ public class SignUp extends AppCompatActivity  {
 
 //------------------------------------------------------------------------------------------------------------------------------- Set User Data
 
-    public void SetData(EditText username, EditText password, EditText email, EditText name, EditText fname) {
-//aghar radio button 1 bood
-        users.add(new Users(username.getText().toString(), password.getText().toString(), email.getText().toString(), name.getText().toString(), fname.getText().toString()));
+    public void SetData(EditText username, EditText password, EditText email, EditText name, EditText fname , RadioButton radio) {
 
+        if(radio.getText().equals("Free Member")) {
+            users.add(new Users(username.getText().toString(), password.getText().toString(), email.getText().toString(), name.getText().toString(), fname.getText().toString()));
+            Toast.makeText(getApplicationContext(), "Account created successfully " + users.get(0).getName() + " " + users.get(0).getFamilyName() + ", You are a Free Member" , Toast.LENGTH_LONG).show();
+        }
+        if(radio.getText().equals("Silver Member")) {
+            users.add(new Silver(username.getText().toString(), password.getText().toString(), email.getText().toString(), name.getText().toString(), fname.getText().toString()));
+            Toast.makeText(getApplicationContext(), "Account created successfully " + users.get(0).getName() + " " + users.get(0).getFamilyName() + ", You are a Silver Member" , Toast.LENGTH_LONG).show();
+        }
+        if(radio.getText().equals("Gold Member")) {
+            users.add(new Gold(username.getText().toString(), password.getText().toString(), email.getText().toString(), name.getText().toString(), fname.getText().toString()));
+            Toast.makeText(getApplicationContext(), "Account created successfully " + users.get(0).getName() + " " + users.get(0).getFamilyName() + ", You are a Gold Member" , Toast.LENGTH_LONG).show();
+        }
     }
 
 //------------------------------------------------------------------------------------------------------------------------------- Duplicated Username
@@ -146,10 +163,6 @@ public class SignUp extends AppCompatActivity  {
 
         }
 return true;
-
-        /*Iterator<Users> it = users.iterator();
-        while(it.hasNext())
-        { }*/
 
     }
 
@@ -370,10 +383,10 @@ return true;
                 SignUpbtn2.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
 
-                        SetData(SignUpTextUser, SignUpTextPass, SignUpTextEmail, SignUpTextName, SignUpTextLName);
+                        int radioId = radioGroup.getCheckedRadioButtonId();
+                        radioButton = findViewById(radioId);
 
-                        Toast.makeText(getApplicationContext(), "Account created successfully " + users.get(0).getName() + " " + users.get(0).getFamilyName(), Toast.LENGTH_LONG).show();
-
+                        SetData(SignUpTextUser, SignUpTextPass, SignUpTextEmail, SignUpTextName, SignUpTextLName , radioButton);
 
                         Intent SignInIntent = new Intent(getApplicationContext(), SignIn.class);
                         startActivity(SignInIntent);

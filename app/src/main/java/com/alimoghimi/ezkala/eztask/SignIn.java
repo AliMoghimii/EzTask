@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -108,7 +109,7 @@ public class SignIn extends AppCompatActivity {
                 }
             });
 
-            //--------------------------------------------------------------
+            //-------------------------------------------------------------- logs in
 
 
 
@@ -117,6 +118,7 @@ public class SignIn extends AppCompatActivity {
             {
                 public void onClick(View v) {
                     ErrorText.setText(" ");
+                    Toast.makeText(getApplicationContext(), "You logged in sucessfully " + current.getName() + " " + current.getFamilyName(), Toast.LENGTH_LONG).show();
                     Intent TaskPage = new Intent(getApplicationContext(),TaskPage.class);
                     startActivity(TaskPage);
                 }

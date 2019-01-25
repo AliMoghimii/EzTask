@@ -18,47 +18,36 @@ import java.util.Vector;
 public class TaskPage extends AppCompatActivity {
 
     RecyclerView myRecView;
-    static List<Tasks> taskList;
     Adapter adapter;
     FloatingActionButton addTaskBtn;
+    Button logoutBtn;
 
     public static boolean prepareData(Tasks task) {
 
-        if (taskList == null) {  // if it was empty list create it
-            taskList = new Vector<Tasks>();
+        if (SignIn.current.userTask == null) {  // if it was empty list create it
+            SignIn.current.userTask = new Vector<Tasks>();
         }
 
-        if (taskList.contains(task)){
+
+        if (SignIn.current.userTask.contains(task)){
             return false;
         }
 
-       //SignIn.current.taskList.add(task); //current = users.get(i);
-        taskList.add(task);
+         else {
+            SignIn.current.userTask.add(task); //current = users.get(i);
+        }
 
-
-//        taskList.add(new Task("not def",1));
-//        taskList.add(new Task("not def", "2018" ,"12" ,"3" , "12" ,"30" ,"0",1));
-//        taskList.add(new Task("not def", "2014" ,"12" ,"3" , "12" ,"30" ,"0",1));
-//        taskList.add(new Task("other", "2019" ,"12" ,"3" , "12" ,"30" ,"0",2));
-//        taskList.add(new Task("high", "2018" ,"12" ,"3" , "12" ,"30" ,"0",3));
-//        taskList.add(new Task("high", "2018" ,"12" ,"3" , "11" ,"30" ,"0",3));
-//        taskList.add(new Task("high",3));
-//        taskList.add(new Task("other", "2018" ,"12" ,"3" , "12" ,"30" ,"0",2));
-//        taskList.add(new Task("low", "2018" ,"12" ,"3" , "12" ,"30" ,"0",5));
-//        taskList.add(new Task("low", "2019" ,"12" ,"3" , "12" ,"30" ,"0",5));
-//        taskList.add(new Task("low", "2018" ,"12" ,"3" , "11" ,"30" ,"0",5));
-
-        //taskList.add(task);
-        Collections.sort(taskList);  // sorting ba time ha.
+        Collections.sort(SignIn.current.userTask);  // sorting ba time ha.
         return true;
     }
 
     void showData() {
 
-        adapter = new Adapter(taskList);
-        myRecView.setLayoutManager(new LinearLayoutManager(this)); // this acticity
-        myRecView.setItemAnimator(new DefaultItemAnimator());
-        myRecView.setAdapter(adapter);
+            adapter = new Adapter(SignIn.current.userTask);
+            myRecView.setLayoutManager(new LinearLayoutManager(this)); // this acticity
+            myRecView.setItemAnimator(new DefaultItemAnimator());
+            myRecView.setAdapter(adapter);
+
     }
 
     @Override
@@ -67,17 +56,38 @@ public class TaskPage extends AppCompatActivity {
         setContentView(R.layout.activity_task_page);
 
         addTaskBtn = (FloatingActionButton) findViewById(R.id.addbtn);
+        logoutBtn = (Button) findViewById(R.id.logoutbtn);
 
         myRecView = (RecyclerView) findViewById(R.id.rview);
         showData();
 
+
         addTaskBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                Intent AddTaskIntent = new Intent(getApplicationContext(), AddTask.class);
-                startActivity(AddTaskIntent);
+                Intent AddTaskFree = new Intent(getApplicationContext(), AddTask.class);
+                Intent AddTaskSilver = new Intent(getApplicationContext(), AddTaskSilver.class);
+                Intent AddTaskGold = new Intent(getApplicationContext(), AddTaskGold.class);
 
+                //-----------------------------------------------------------------------------------Free
+                if(SignIn.current.getClass().equals(Gold.class))
+                startActivity(AddTaskGold);
+                //-----------------------------------------------------------------------------------Silver
+                if(SignIn.current.getClass().equals(Silver.class))
+                startActivity(AddTaskSilver);
+                //-----------------------------------------------------------------------------------Gold
+                if(SignIn.current.getClass().equals(Users.class))
+                startActivity(AddTaskFree);
+            }
 
+        });
+
+        //-----------------------------------------------------------------------------------Logout
+        logoutBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                Intent Logout = new Intent(getApplicationContext(), SignIn.class);
+                startActivity(Logout);
             }
 
         });

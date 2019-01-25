@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddTask">
+    tools:context=".AddTaskGold">
 
 
     <ImageView
         android:id="@+id/imageView6"
         android:layout_width="336dp"
         android:layout_height="421dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="92dp"
         android:layout_marginEnd="36dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -22,7 +22,7 @@
         android:layout_width="129dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="148dp"
-        android:layout_marginTop="112dp"
+        android:layout_marginTop="124dp"
         android:ems="10"
         android:hint="Task Name"
         android:inputType="textLongMessage"
@@ -34,7 +34,7 @@
         android:layout_width="55dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="136dp"
-        android:layout_marginTop="180dp"
+        android:layout_marginTop="192dp"
         android:ems="10"
         android:hint="YYYY"
         android:inputType="number"
@@ -48,7 +48,7 @@
         android:layout_width="11dp"
         android:layout_height="36dp"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="192dp"
+        android:layout_marginTop="200dp"
         android:text="/"
         android:textSize="26sp"
         app:layout_constraintStart_toEndOf="@+id/YearTxt"
@@ -58,7 +58,7 @@
         android:id="@+id/MonthTxt"
         android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="180dp"
+        android:layout_marginTop="192dp"
         android:ems="10"
         android:hint="MM"
         android:inputType="number"
@@ -69,7 +69,7 @@
         android:id="@+id/textView3"
         android:layout_width="11dp"
         android:layout_height="36dp"
-        android:layout_marginTop="192dp"
+        android:layout_marginTop="200dp"
         android:text="/"
         android:textSize="26sp"
         app:layout_constraintStart_toEndOf="@+id/MonthTxt"
@@ -79,7 +79,7 @@
         android:id="@+id/DayTxt"
         android:layout_width="33dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="180dp"
+        android:layout_marginTop="192dp"
         android:ems="10"
         android:hint="DD"
         android:inputType="number"
@@ -92,7 +92,7 @@
         android:layout_width="35dp"
         android:layout_height="44dp"
         android:layout_marginEnd="4dp"
-        android:layout_marginBottom="444dp"
+        android:layout_marginBottom="436dp"
         android:ems="10"
         android:hint="HH"
         android:inputType="number"
@@ -103,8 +103,7 @@
         android:id="@+id/textView4"
         android:layout_width="8dp"
         android:layout_height="43dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginBottom="444dp"
+        android:layout_marginBottom="436dp"
         android:text=":"
         android:textSize="27sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -115,7 +114,7 @@
         android:layout_width="40dp"
         android:layout_height="44dp"
         android:layout_marginEnd="4dp"
-        android:layout_marginBottom="444dp"
+        android:layout_marginBottom="436dp"
         android:ems="10"
         android:hint="MM"
         android:inputType="number"
@@ -126,7 +125,7 @@
         android:id="@+id/textView5"
         android:layout_width="8dp"
         android:layout_height="43dp"
-        android:layout_marginBottom="444dp"
+        android:layout_marginBottom="436dp"
         android:text=":"
         android:textSize="27sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -137,7 +136,7 @@
         android:layout_width="35dp"
         android:layout_height="44dp"
         android:layout_marginEnd="132dp"
-        android:layout_marginBottom="444dp"
+        android:layout_marginBottom="436dp"
         android:ems="10"
         android:hint="SS"
         android:inputType="number"
@@ -151,7 +150,7 @@
         android:layout_height="57dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="128dp"
+        android:layout_marginBottom="112dp"
         android:text="Submit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -163,7 +162,7 @@
         android:layout_width="34dp"
         android:layout_height="41dp"
         android:layout_marginStart="72dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/calendar"
         android:textColor="@color/colorPrimary"
         app:layout_constraintStart_toStartOf="parent"
@@ -174,7 +173,7 @@
         android:layout_width="37dp"
         android:layout_height="54dp"
         android:layout_marginStart="72dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/goTOCalender"
         app:srcCompat="@drawable/clock" />
@@ -189,10 +188,10 @@
         android:layout_marginBottom="13dp"
         app:layout_constraintBottom_toTopOf="@+id/imageView6"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.89"
+        app:layout_constraintHorizontal_bias="0.892"
         app:layout_constraintStart_toEndOf="@+id/imageView6"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.060000002">
+        app:layout_constraintVertical_bias="0.031">
 
         <RadioButton
             android:id="@+id/radio1"
@@ -219,6 +218,14 @@
             android:text="Low Priority"
             android:textSize="18sp" />
 
+        <RadioButton
+            android:id="@+id/radio4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="sans-serif-smallcaps"
+            android:text="Other"
+            android:textSize="18sp" />
+
 
     </RadioGroup>
 
@@ -227,7 +234,7 @@
         android:layout_width="30dp"
         android:layout_height="58dp"
         android:layout_marginStart="76dp"
-        android:layout_marginTop="112dp"
+        android:layout_marginTop="124dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/file" />
@@ -251,11 +258,28 @@
         android:layout_width="89dp"
         android:layout_height="22dp"
         android:layout_marginStart="160dp"
-        android:text="Free User"
+        android:text="Gold User"
         android:textAlignment="center"
         android:textColor="@android:color/background_light"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatingActionButton3"
+        android:layout_width="56dp"
+        android:layout_height="59dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:elevation="5dp"
+        app:borderWidth="0dp"
+        app:elevation="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:pressedTranslationZ="1dp"
+        app:srcCompat="@drawable/edituser" />
+
+
 
 </android.support.constraint.ConstraintLayout>
