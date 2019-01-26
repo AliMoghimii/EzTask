@@ -20,6 +20,7 @@ public class AddTaskGold extends AppCompatActivity {
     EditText taskHour;
     EditText taskMinute;
     EditText taskSecond;
+    EditText DestUser;
     Button submitBtn;
     Button toCalender;
     FloatingActionButton AddToUser;

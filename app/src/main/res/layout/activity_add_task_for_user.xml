@@ -179,7 +179,7 @@
         app:srcCompat="@drawable/clock" />
 
     <RadioGroup
-        android:id="@+id/rg2"
+        android:id="@+id/rg5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="13dp"
@@ -188,18 +188,10 @@
         android:layout_marginBottom="13dp"
         app:layout_constraintBottom_toTopOf="@+id/imageView6"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.851"
+        app:layout_constraintHorizontal_bias="0.892"
         app:layout_constraintStart_toEndOf="@+id/imageView6"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.111">
-
-        <RadioButton
-            android:id="@+id/radio2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fontFamily="sans-serif-smallcaps"
-            android:text="Medium Priority"
-            android:textSize="18sp" />
+        app:layout_constraintVertical_bias="0.114">
 
         <RadioButton
             android:id="@+id/radio1"
@@ -208,6 +200,14 @@
             android:checked="true"
             android:fontFamily="sans-serif-smallcaps"
             android:text="High Priority"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/radio2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="sans-serif-smallcaps"
+            android:text="Medium Priority"
             android:textSize="18sp" />
 
         <RadioButton
@@ -258,7 +258,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/userid"
         android:layout_width="147dp"
         android:layout_height="42dp"
         android:layout_marginEnd="116dp"
@@ -275,7 +275,7 @@
         android:layout_height="53dp"
         android:layout_marginTop="136dp"
         android:layout_marginEnd="32dp"
-        app:layout_constraintEnd_toStartOf="@+id/editText2"
+        app:layout_constraintEnd_toStartOf="@+id/userid"
         app:layout_constraintTop_toBottomOf="@+id/imageView10"
         app:srcCompat="@drawable/edituser" />
 

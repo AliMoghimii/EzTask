@@ -27,6 +27,7 @@ public class SignIn extends AppCompatActivity {
     EditText SignInTextPass;
     TextView ErrorText;
     Button SignInbtn;
+    Button InfoBtn;
     static Users current;
     boolean PassLoginValid;
 
@@ -63,6 +64,7 @@ public class SignIn extends AppCompatActivity {
         SignInTextUser = (EditText) findViewById(R.id.emailandusersignin);
         SignInTextPass = (EditText) findViewById(R.id.passsignin);
         SignInbtn = (Button) findViewById(R.id.loginbtn);
+        InfoBtn = (Button) findViewById(R.id.info);
         ErrorText = (TextView) findViewById(R.id.errortxt);
 
         SignInbtn.setEnabled(false);
@@ -142,6 +144,14 @@ public class SignIn extends AppCompatActivity {
             public void onClick(View v) {
                 Intent SignUp = new Intent(getApplicationContext(), SignUp.class);
                 startActivity(SignUp);
+            }
+
+        });
+
+        InfoBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent Info = new Intent(getApplicationContext(), Info.class);
+                startActivity(Info);
             }
 
         });
