@@ -39,6 +39,16 @@
         android:layout_marginBottom="8dp"
         android:text="YYYY/MM/DD" />
 
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/Prio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginRight="7dp"
+        android:text="Prio" />
 
 
 </RelativeLayout>

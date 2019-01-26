@@ -73,13 +73,15 @@ public class SignUp extends AppCompatActivity  {
 
         String username = usernameEditText.getText().toString();
 
-        if (isDigit(username.charAt(0)))
+        if(!username.isEmpty())
         {
-            usernameEditText.setError("A Username can't start with a Number");
-            return false;
+            if (isDigit(username.charAt(0))) {
+                usernameEditText.setError("A Username can't start with a Number");
+                return false;
+            }
+            return true;
         }
-        return true;
-
+        return false;
     }
 
 //------------------------------------------------------------------------------------------------------------------------------- Email Validation
@@ -159,7 +161,7 @@ public class SignUp extends AppCompatActivity  {
 
         for (int i = 0; i < Users.NumberUsers ; i++) {
 
-            if(users.get(i).getUsername().equals((username)))
+            if(users.get(i).getUsername().equals(username))
             {
                 usernameEditText.setError("A Username by this ID is already in the system");
                 return false;
@@ -221,12 +223,9 @@ return true;
 
             try {
 
-                //users.add(new Users("Ali", "aaaaaaaa1A", "ali_moghimi@yahoo.com", "Ali", "Moghimi"));
-
                 SignUpTextUser.addTextChangedListener(new TextWatcher() {
                     @Override
-                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                    }
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
 
                     @Override
                     public void onTextChanged(CharSequence signUpTextUser, int start, int before, int count) {
@@ -258,8 +257,7 @@ return true;
 
                 SignUpTextPass.addTextChangedListener(new TextWatcher() {
                     @Override
-                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                    }
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
 
                     @Override
                     public void onTextChanged(CharSequence signUpTextPass, int start, int before, int count) {
@@ -288,8 +286,7 @@ return true;
 
                 SignUpTextEmail.addTextChangedListener(new TextWatcher() {
                     @Override
-                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                    }
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
 
                     @Override
                     public void onTextChanged(CharSequence signUpTextEmail, int start, int before, int count) {
@@ -328,8 +325,7 @@ return true;
 
                 SignUpTextName.addTextChangedListener(new TextWatcher() {
                     @Override
-                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                    }
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
 
                     @Override
                     public void onTextChanged(CharSequence signUpTextName, int start, int before, int count) {
@@ -357,8 +353,7 @@ return true;
 
                 SignUpTextLName.addTextChangedListener(new TextWatcher() {
                     @Override
-                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                    }
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
 
                     @Override
                     public void onTextChanged(CharSequence signUpTextLastName, int start, int before, int count) {
@@ -374,17 +369,13 @@ return true;
                         else
                             SignUpbtn2.setEnabled(false);
 
-
                     }
 
                     @Override
-                    public void afterTextChanged(Editable s) {
-                    }
+                    public void afterTextChanged(Editable s) { }
                 });
 
 //-------------------------------------------------------------------------------------------------------Change Intent
-
-
 
                 SignUpbtn2.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
@@ -397,11 +388,12 @@ return true;
                         Intent SignInIntent = new Intent(getApplicationContext(), SignIn.class);
                         startActivity(SignInIntent);
 
-
                     }
 
                 });
-            } catch (Exception e) {
+
+            }
+            catch (Exception e) {
                 e.printStackTrace();
             }
 

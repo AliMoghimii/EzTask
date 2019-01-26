@@ -20,7 +20,10 @@ public class TaskPage extends AppCompatActivity {
     RecyclerView myRecView;
     Adapter adapter;
     FloatingActionButton addTaskBtn;
-    Button logoutBtn;
+    FloatingActionButton searchBtn;
+    FloatingActionButton logoutBtn;
+
+//---------------------------------------------------------------------prepares data and creates them
 
     public static boolean prepareData(Tasks task) {
 
@@ -40,6 +43,7 @@ public class TaskPage extends AppCompatActivity {
         Collections.sort(SignIn.current.userTask);  // sorting ba time ha.
         return true;
     }
+//------------------------------------------------------------------------shows the prepared data
 
     void showData() {
 
@@ -49,7 +53,7 @@ public class TaskPage extends AppCompatActivity {
             myRecView.setAdapter(adapter);
 
     }
-
+    //-------------------------------------------------------------------------------------------------------Main
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,12 +61,22 @@ public class TaskPage extends AppCompatActivity {
 
         try {
             addTaskBtn = (FloatingActionButton) findViewById(R.id.addbtn);
-            logoutBtn = (Button) findViewById(R.id.logoutbtn);
+            logoutBtn = (FloatingActionButton) findViewById(R.id.logoutbtn);
+            searchBtn = (FloatingActionButton) findViewById(R.id.searchBtn);
 
             myRecView = (RecyclerView) findViewById(R.id.rview);
             showData();
+            //-----------------------------------------------------------------------------------Search
+            searchBtn.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
 
+                    Intent searchPage = new Intent(getApplicationContext(), Search.class);
+                    startActivity(searchPage);
+                }
 
+            });
+
+            //-----------------------------------------------------------------------------------Add Task
             addTaskBtn.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
 

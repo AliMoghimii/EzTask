@@ -103,6 +103,25 @@ public class Tasks implements Comparable<Tasks> , Serializable {
                 return title;
         }
 
+        public String getPriority() {
+                if(this.priority == 1)
+                        return "Not Described";
+
+                if(this.priority == 2)
+                        return "Other";
+
+                if(this.priority == 3)
+                        return "High Priority";
+
+                if(this.priority == 4)
+                        return "Medium Priority";
+
+                if(this.priority == 5)
+                        return "Low Priority";
+
+                return "Not Described";
+        }
+
         public void setTitle(String massage) {
                 this.title = massage;
         }
@@ -131,27 +150,37 @@ public class Tasks implements Comparable<Tasks> , Serializable {
         public int compareTo(Tasks o) {
                 //return (isDated) ? -1 : 1;
 
-                if (isDated) {
+                if (isDated)
+                {
 
-                        if (this.priority == o.priority) {
-                                if (this.totalD > o.totalD) {
-                                        return -1; // or -1,
-                                } else if (this.totalD < o.totalD) {
-                                        return 1; // or
-                                } else {
+                        if (this.priority == o.priority)
+                        {
+                             if (this.totalD > o.totalD)
+                             {
+                                        return -1;
+                                }
+                                else if (this.totalD < o.totalD) {
+                                   return 1;
+                                }
 
-                                        if (this.totalS > o.totalS) {
-                                                return -1;
-                                        } else if (this.totalS < o.totalS)
-                                                return 1;
+                                else {
 
-                                        else return 0;
+                                    if (this.totalS > o.totalS) {
+                                          return -1;
+                                    }
+
+                                    else if (this.totalS < o.totalS)
+                                       return 1;
+
+                                    else return 0;
                                 }
                         } else if (this.priority > o.priority)
                                 return 1;
 
                         else return -1;
-                } else {
+                }
+
+                else {
 
                         if (this.priority == o.priority)
                                 return 0;
@@ -165,7 +194,4 @@ public class Tasks implements Comparable<Tasks> , Serializable {
         }
 }
 
-// class subTask extends Tasks{
-//
-//
-//}
+// class subTask extends Tasks{}

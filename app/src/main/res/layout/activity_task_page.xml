@@ -27,17 +27,26 @@
         android:clickable="true"
         app:srcCompat="@drawable/add" />
 
-    <Button
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/searchBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="580dp"
+        android:layout_marginEnd="20dp"
+        android:clickable="true"
+        app:srcCompat="@drawable/sear" />
+
+    <android.support.design.widget.FloatingActionButton
         android:id="@+id/logoutbtn"
-        style="@style/Widget.AppCompat.Button.Borderless.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="665dp"
-        android:fontFamily="sans-serif-smallcaps"
-        android:text="Logout"
-        android:textAllCaps="true"
-        android:textSize="18sp" />
+        android:layout_marginTop="660dp"
+        android:clickable="true"
+        app:srcCompat="@drawable/logout" />
 
 </RelativeLayout>

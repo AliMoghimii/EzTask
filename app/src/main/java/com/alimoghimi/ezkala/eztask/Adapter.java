@@ -57,17 +57,20 @@ public class Adapter extends RecyclerView.Adapter <Adapter.MyViewHolder> {
 
             AppCompatTextView  TitleTextView ;
             AppCompatTextView DateTextView ;
+            AppCompatTextView PriorityView ;
 
             MyViewHolder(View itemView){
                 super(itemView);
                 TitleTextView = itemView.findViewById(R.id.Title); // ref ing massage txt to xml code.
                 DateTextView = itemView.findViewById(R.id.Date);
+                PriorityView = itemView.findViewById(R.id.Prio);
             }
 
             public void bind(Tasks tasks){  // field ha ro por mikoneee. toye on bind view holder
 
                 TitleTextView.setText(tasks.getTitle());
                 DateTextView.setText(tasks.getDate()); // 6 fields must be added. + one field in the Task class complete
+                PriorityView.setText(tasks.getPriority());
 
             }
         }

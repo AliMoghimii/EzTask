@@ -38,9 +38,12 @@ public class SignIn extends AppCompatActivity {
         String usernameEmail = usernameText.getText().toString();
         String password = passwordText.getText().toString();
 
-        for (int i = 0; i < Users.NumberUsers; i++) {
-            if (users.get(i).getUsername().equals(usernameEmail) || users.get(i).getEmail().equals(usernameEmail)) {
-                if (users.get(i).getPassword().equals(password)) {
+        for (int i = 0; i < Users.NumberUsers; i++)
+        {
+            if (users.get(i).getUsername().equals(usernameEmail) || users.get(i).getEmail().equals(usernameEmail))
+            {
+                if (users.get(i).getPassword().equals(password))
+                {
                     current = users.get(i);
                     return true;
                 }

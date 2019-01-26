@@ -179,7 +179,7 @@
         app:srcCompat="@drawable/clock" />
 
     <RadioGroup
-        android:id="@+id/rg2"
+        android:id="@+id/rg4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="13dp"

@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 public class AddTaskGold extends AppCompatActivity {
@@ -21,14 +23,39 @@ public class AddTaskGold extends AppCompatActivity {
     Button submitBtn;
     Button toCalender;
     FloatingActionButton AddToUser;
+    RadioGroup radioGroup;
+    RadioButton radioButton;
 
-    public boolean checkDatesEnterd(EditText year, EditText month, EditText day, EditText hour, EditText minute, EditText second){
-        if (year.getText().toString().equals("")  && month.getText().toString().equals("")  && day.getText().toString().equals("")
-                && hour.getText().toString().equals("") && minute.getText().toString().equals("")  && second.getText().toString().equals("") )
-            return false;
-        return true;
+    //-------------------------------------------------------------------------------------------------------------------sets priorities
+
+    public int priorityCheckerGold(RadioButton radio)
+    {
+        if(radio.getText().equals("Other")){
+            return 2;
+        }
+        if(radio.getText().equals("High Priority")) {
+            return 3;
+        }
+        if(radio.getText().equals("Medium Priority")){
+            return 4;
+        }
+        if(radio.getText().equals("Low Priority")){
+            return 5;
+        }
+        else
+            return 1;
     }
 
+    //-------------------------------------------------------------------------------------------------------------------if dates are empty
+
+
+    public boolean checkDatesEnterd(EditText year, EditText month, EditText day, EditText hour, EditText minute, EditText second){
+        if (year.getText().toString().equals("")  && month.getText().toString().equals("")  && day.getText().toString().equals("") && hour.getText().toString().equals("") && minute.getText().toString().equals("")  && second.getText().toString().equals("") )
+            return false;
+
+        return true;
+    }
+    //-------------------------------------------------------------------------------------------------------------------Reset text values
     public void resetEditTexts(){
 
         taskDay.setText("");
@@ -40,6 +67,8 @@ public class AddTaskGold extends AppCompatActivity {
         taskMonth.setText("");
     }
 
+    //-------------------------------------------------------------------------------------------------------------------main
+    //-------------------------------------------------------------------------------------------------------------------
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,19 +84,20 @@ public class AddTaskGold extends AppCompatActivity {
         submitBtn = (Button) findViewById(R.id.SubmitBtn);
         toCalender = (Button) findViewById(R.id.goTOCalender);
         AddToUser = (FloatingActionButton) findViewById(R.id.floatingActionButton3);
+        radioGroup = (RadioGroup) findViewById(R.id.rg4);
 
 
-
+//-------------------------------------------------------------------------------------------------------------------Submit Button
         submitBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 Intent toList = new Intent(getApplicationContext(), TaskPage.class);
 
-                if (!(taskInfo.getText().toString().equals("") && taskYear.getText().toString().equals("")
-                        && taskMonth.getText().toString().equals("") && taskDay.getText().toString().equals("")
-                        && taskHour.getText().toString().equals("") && taskMinute.getText().toString().equals("") &&
-                        taskSecond.getText().toString().equals(""))) {
+                int radioId = radioGroup.getCheckedRadioButtonId();
+                radioButton = findViewById(radioId);
+
+                if (!(taskInfo.getText().toString().equals("") && taskYear.getText().toString().equals("") && taskMonth.getText().toString().equals("") && taskDay.getText().toString().equals("") && taskHour.getText().toString().equals("") && taskMinute.getText().toString().equals("") && taskSecond.getText().toString().equals(""))) {
 
                     if (!checkDatesEnterd(taskYear, taskMonth, taskDay, taskHour, taskMinute, taskSecond)) {
 
@@ -76,9 +106,7 @@ public class AddTaskGold extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "This task is already in the list", Toast.LENGTH_LONG).show();
 
                     } else {
-                        TaskPage.prepareData(new Tasks((String) taskInfo.getText().toString(), taskYear.getText().toString(),
-                                taskMonth.getText().toString(), taskDay.getText().toString(), taskHour.getText().toString(),
-                                taskMinute.getText().toString(), taskSecond.getText().toString(), 2));
+                        TaskPage.prepareData(new Tasks((String) taskInfo.getText().toString(), taskYear.getText().toString(), taskMonth.getText().toString(), taskDay.getText().toString(), taskHour.getText().toString(), taskMinute.getText().toString(), taskSecond.getText().toString(), priorityCheckerGold(radioButton)));
 
                         Toast.makeText(getApplicationContext(), "Task Added to list", Toast.LENGTH_LONG).show();
                     }
@@ -92,7 +120,7 @@ public class AddTaskGold extends AppCompatActivity {
 
             }
         });
-
+//-------------------------------------------------------------------------------------------------------------------goto calender
         toCalender.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,7 +129,7 @@ public class AddTaskGold extends AppCompatActivity {
                 startActivity(tocal);
             }
         });
-
+//-------------------------------------------------------------------------------------------------------------------goto addforuser
         AddToUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
