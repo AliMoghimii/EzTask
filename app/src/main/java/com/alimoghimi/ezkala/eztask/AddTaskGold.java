@@ -21,7 +21,8 @@ public class AddTaskGold extends AppCompatActivity {
     EditText taskMinute;
     EditText taskSecond;
     EditText DestUser;
-    Button submitBtn;
+    FloatingActionButton submitBtn;
+    Button Back;
     Button toCalender;
     FloatingActionButton AddToUser;
     RadioGroup radioGroup;
@@ -82,10 +83,11 @@ public class AddTaskGold extends AppCompatActivity {
         taskHour = (EditText) findViewById(R.id.HourTxt);
         taskMinute = (EditText) findViewById(R.id.MinuteTxt);
         taskSecond = (EditText) findViewById(R.id.SecondTxt);
-        submitBtn = (Button) findViewById(R.id.SubmitBtn);
+        submitBtn = (FloatingActionButton) findViewById(R.id.SubmitBtn);
         toCalender = (Button) findViewById(R.id.goTOCalender);
         AddToUser = (FloatingActionButton) findViewById(R.id.floatingActionButton3);
         radioGroup = (RadioGroup) findViewById(R.id.rg4);
+        Back = (Button) findViewById(R.id.back);
 
 
 //-------------------------------------------------------------------------------------------------------------------Submit Button
@@ -140,6 +142,14 @@ public class AddTaskGold extends AppCompatActivity {
             }
         });
 
+        Back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent gotomain = new Intent(getApplicationContext(), TaskPage.class);
+                startActivity(gotomain);
+            }
+        });
 
 
     }

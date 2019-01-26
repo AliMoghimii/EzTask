@@ -1,6 +1,7 @@
 package com.alimoghimi.ezkala.eztask;
 
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -21,8 +22,9 @@ public class AddTaskSilver extends AppCompatActivity {
     EditText taskHour;
     EditText taskMinute;
     EditText taskSecond;
-    Button submitBtn;
+    FloatingActionButton submitBtn;
     Button toCalender;
+    Button Back;
     RadioGroup radioGroup;
     RadioButton radioButton;
 
@@ -82,9 +84,10 @@ public class AddTaskSilver extends AppCompatActivity {
         taskHour = (EditText) findViewById(R.id.HourTxt);
         taskMinute = (EditText) findViewById(R.id.MinuteTxt);
         taskSecond = (EditText) findViewById(R.id.SecondTxt);
-        submitBtn = (Button) findViewById(R.id.SubmitBtn);
+        submitBtn = (FloatingActionButton) findViewById(R.id.SubmitBtn);
         toCalender = (Button) findViewById(R.id.goTOCalender);
         radioGroup = (RadioGroup) findViewById(R.id.rg3);
+        Back = (Button) findViewById(R.id.back);
 
 //-------------------------------------------------------------------------------------------------------------------Submit Button
         submitBtn.setOnClickListener(new View.OnClickListener() {
@@ -128,6 +131,15 @@ public class AddTaskSilver extends AppCompatActivity {
 
                 Intent tocal = new Intent(getApplicationContext(), AddWCalender.class);
                 startActivity(tocal);
+            }
+        });
+
+        Back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent gotomain = new Intent(getApplicationContext(), TaskPage.class);
+                startActivity(gotomain);
             }
         });
 
